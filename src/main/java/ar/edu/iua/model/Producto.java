@@ -10,26 +10,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Producto")
+@Table(name = "Producto")
 public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 5081791146397214235L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@Column(length = 100)
 	private String nombre;
-	
+
 	@Column(length = 200)
 	private String descripcion;
-	
+
 	private double precioLista;
-	
+
 	@Column(columnDefinition = "TINYINT DEFAULT 0")
 	private boolean enStock;
-	
+
+	// ******
+
 	public long getId() {
 		return id;
 	}
@@ -69,6 +71,5 @@ public class Producto implements Serializable {
 	public void setEnStock(boolean enStock) {
 		this.enStock = enStock;
 	}
-
 
 }
