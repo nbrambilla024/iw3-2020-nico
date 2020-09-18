@@ -63,7 +63,7 @@ public class ProductoRestController {
 				return new ResponseEntity<List<Producto>>(productoBusiness.listNombreByComienzaLetraA(letra),
 						HttpStatus.OK);
 
-		return new ResponseEntity<List<Producto>>(productoBusiness.list(), HttpStatus.OK);
+			return new ResponseEntity<List<Producto>>(productoBusiness.list(), HttpStatus.OK);
 		} catch (BusinessException e) {
 			return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
 

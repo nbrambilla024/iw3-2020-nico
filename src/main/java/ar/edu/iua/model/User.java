@@ -1,11 +1,15 @@
 package ar.edu.iua.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +36,12 @@ public class User implements Serializable {
 
 	@Column(length = 100)
 	private String password;
+
+	@ManyToMany
+	@JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name="id_user", referencedColumnName = "id")},
+	inverseJoinColumns = {@JoinColumn(name="id_rol", referencedColumnName = "id")}
+	)
+	private Set<Rol> roles;
 
 	public Integer getId() {
 		return id;
@@ -79,6 +89,14 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Set<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Rol> roles) {
+		this.roles = roles;
 	}
 
 }

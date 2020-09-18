@@ -118,6 +118,7 @@ public class ProductoBusiness implements IProductoBusiness {
 		try {
 			if (letra.equals("A"))
 				return productoDAO.findByNombreStartingWith(letra);
+			
 			return null;
 		} catch (Exception e) {
 			throw new BusinessException(e);
