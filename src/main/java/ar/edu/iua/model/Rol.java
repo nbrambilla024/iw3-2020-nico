@@ -1,5 +1,7 @@
 package ar.edu.iua.model;
 
+import java.io.Serializable;
+
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,23 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="roles")
-public class Rol {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(length = 50, nullable = false, unique = true)
-	private String rol;
-	
-	@Column(length = 250, nullable = true)
-	private String descripcion;
+@Table(name = "roles")
+public class Rol implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7876275989158953598L;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -44,5 +41,15 @@ public class Rol {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@Column(length = 50, nullable = false, unique = true)
+	private String rol;
+
+	@Column(length = 250, nullable = true)
+	private String descripcion;
+
 }

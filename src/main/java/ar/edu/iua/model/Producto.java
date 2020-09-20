@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,6 +36,10 @@ public class Producto implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private ProductoDetalle productoDetalle;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "proveedor_id")
+	private Proveedor proveedor;
 
 	// ******
 
