@@ -53,7 +53,7 @@ public class User implements Serializable {
 	private Set<Rol> roles;
 
 	@OneToMany(targetEntity = Venta.class, mappedBy = "user", fetch = FetchType.LAZY)
-	private List<User> userList;
+	private List<Venta> ventaList;
 
 	public int getId() {
 		return id;
