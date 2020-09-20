@@ -2,15 +2,18 @@ package ar.edu.iua.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,7 +33,7 @@ public class Venta implements Serializable {
 	private Date fecha;
 
 	@Column(length = 150, nullable = false)
-	private double precioTotal;
+	private Double precioTotalVenta;
 
 	@Column(length = 120, nullable = false)
 	private int cantTotalProductos;
@@ -39,6 +42,9 @@ public class Venta implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	@OneToMany(targetEntity = VentaDetalle.class, mappedBy = "venta", fetch = FetchType.LAZY)
+	private List<VentaDetalle> ventaDetalleList;
+	 
 	public User getUser() {
 		return user;
 	}
@@ -64,11 +70,11 @@ public class Venta implements Serializable {
 	}
 
 	public double getPrecioTotal() {
-		return precioTotal;
+		return precioTotalVenta;
 	}
 
 	public void setPrecioTotal(double precioTotal) {
-		this.precioTotal = precioTotal;
+		this.precioTotalVenta = precioTotal;
 	}
 
 	public int getCantTotalProductos() {

@@ -1,15 +1,18 @@
 package ar.edu.iua.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,13 +26,13 @@ public class Producto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(length = 100)
+	@Column(length = 100, nullable = false)
 	private String nombre;
 
-	@Column(length = 250)
+	@Column(length = 250, nullable = false)
 	private String descripcion;
 
-	private double precioLista;
+	private Double precioLista;
 
 	@Column(columnDefinition = "TINYINT DEFAULT 0")
 	private boolean enStock;
@@ -40,8 +43,9 @@ public class Producto implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "proveedor_id")
 	private Proveedor proveedor;
-
-	// ******
+	
+	@OneToMany(targetEntity = VentaDetalle.class, mappedBy = "producto", fetch = FetchType.LAZY)
+	private List<VentaDetalle> ventaDetalleList;
 
 	public ProductoDetalle getProductoDetalle() {
 		return productoDetalle;
@@ -75,12 +79,22 @@ public class Producto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public double getPrecioLista() {
+
+
+	public Double getPrecioLista() {
 		return precioLista;
 	}
 
-	public void setPrecioLista(double precioLista) {
+	public void setPrecioLista(Double precioLista) {
 		this.precioLista = precioLista;
+	}
+
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
 	}
 
 	public boolean isEnStock() {
