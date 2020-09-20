@@ -17,6 +17,16 @@ public class Rol implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7876275989158953598L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@Column(length = 50, nullable = false, unique = true)
+	private String rol;
+
+	@Column(length = 250, nullable = true)
+	private String descripcion;
 
 	public int getId() {
 		return id;
@@ -42,14 +52,6 @@ public class Rol implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
 
-	@Column(length = 50, nullable = false, unique = true)
-	private String rol;
-
-	@Column(length = 250, nullable = true)
-	private String descripcion;
 
 }

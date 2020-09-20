@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,12 +26,26 @@ public class Venta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name ="fecha", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date fecha;
 
+	@Column(length = 150, nullable = false)
 	private double precioTotal;
 
+	@Column(length = 120, nullable = false)
 	private int cantTotalProductos;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private User user;
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public int getId() {
 		return id;
@@ -63,8 +78,5 @@ public class Venta implements Serializable {
 	public void setCantTotalProductos(int cantTotalProductos) {
 		this.cantTotalProductos = cantTotalProductos;
 	}
-
-
-
 
 }

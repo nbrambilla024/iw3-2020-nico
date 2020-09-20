@@ -20,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name = "users")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property="id")
+@Table(name = "user")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -5700258639185317869L;
@@ -47,83 +47,68 @@ public class User implements Serializable {
 	private String password;
 
 	@ManyToMany
-	@JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name="id_user", referencedColumnName = "id")},
-	inverseJoinColumns = {@JoinColumn(name="id_rol", referencedColumnName = "id")}
-	)
+	@JoinTable(name = "users_roles", joinColumns = {
+			@JoinColumn(name = "id_user", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "id_rol", referencedColumnName = "id") })
 	private Set<Rol> roles;
-	
 
+	@OneToMany(targetEntity = Venta.class, mappedBy = "user", fetch = FetchType.LAZY)
+	private List<User> userList;
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getNombre() {
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getApellido() {
 		return apellido;
 	}
 
-
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-
 
 	public String getUsername() {
 		return username;
 	}
 
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 	public Set<Rol> getRoles() {
 		return roles;
 	}
 
-
 	public void setRoles(Set<Rol> roles) {
 		this.roles = roles;
 	}
-
-
-
 
 }
