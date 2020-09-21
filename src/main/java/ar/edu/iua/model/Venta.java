@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -42,17 +44,11 @@ public class Venta implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@OneToMany(targetEntity = VentaDetalle.class, mappedBy = "venta", fetch = FetchType.LAZY)
-	private List<VentaDetalle> ventaDetalleList;
-	 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
+	@ManyToMany
+	@JoinTable(name = "producto_venta", joinColumns = { @JoinColumn(name = "id_producto", referencedColumnName = "id") },
+	inverseJoinColumns = { @JoinColumn(name = "id_venta", referencedColumnName = "id") })
+	private List<Producto> productoList;
+	
 	public int getId() {
 		return id;
 	}
@@ -69,12 +65,12 @@ public class Venta implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public double getPrecioTotal() {
+	public Double getPrecioTotalVenta() {
 		return precioTotalVenta;
 	}
 
-	public void setPrecioTotal(double precioTotal) {
-		this.precioTotalVenta = precioTotal;
+	public void setPrecioTotalVenta(Double precioTotalVenta) {
+		this.precioTotalVenta = precioTotalVenta;
 	}
 
 	public int getCantTotalProductos() {
@@ -84,5 +80,17 @@ public class Venta implements Serializable {
 	public void setCantTotalProductos(int cantTotalProductos) {
 		this.cantTotalProductos = cantTotalProductos;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	 
+
 
 }

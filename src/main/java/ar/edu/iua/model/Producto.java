@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -39,14 +41,13 @@ public class Producto implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private ProductoDetalle productoDetalle;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "proveedor_id")
 	private Proveedor proveedor;
-	
-	@OneToMany(targetEntity = VentaDetalle.class, mappedBy = "producto", fetch = FetchType.LAZY)
-	private List<VentaDetalle> ventaDetalleList;
 
+
+	
 	public ProductoDetalle getProductoDetalle() {
 		return productoDetalle;
 	}
@@ -78,8 +79,6 @@ public class Producto implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-
 
 	public Double getPrecioLista() {
 		return precioLista;
