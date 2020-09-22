@@ -34,6 +34,7 @@ public class Producto implements Serializable {
 	@Column(length = 250, nullable = false)
 	private String descripcion;
 
+	@Column(length = 100, nullable = false)
 	private Double precioLista;
 
 	@Column(columnDefinition = "TINYINT DEFAULT 0")

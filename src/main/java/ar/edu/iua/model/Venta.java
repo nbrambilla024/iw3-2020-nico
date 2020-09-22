@@ -45,8 +45,8 @@ public class Venta implements Serializable {
 	private User user;
 	
 	@ManyToMany
-	@JoinTable(name = "producto_venta", joinColumns = { @JoinColumn(name = "id_producto", referencedColumnName = "id") },
-	inverseJoinColumns = { @JoinColumn(name = "id_venta", referencedColumnName = "id") })
+	@JoinTable(name = "producto_venta", joinColumns = { @JoinColumn(name = "id_venta", referencedColumnName = "id") },
+	inverseJoinColumns = { @JoinColumn(name = "id_producto", referencedColumnName = "id") })
 	private List<Producto> productoList;
 	
 	public int getId() {
@@ -87,6 +87,14 @@ public class Venta implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Producto> getProductoList() {
+		return productoList;
+	}
+
+	public void setProductoList(List<Producto> productoList) {
+		this.productoList = productoList;
 	}
 
 
