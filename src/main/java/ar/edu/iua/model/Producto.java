@@ -46,6 +46,10 @@ public class Producto implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "proveedor_id")
 	private Proveedor proveedor;
+	
+	//Nuevo
+	@ManyToMany(targetEntity = Venta.class,mappedBy = "productoList")
+	private List<Venta> ventaList;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(	name = "producto_ingrediente",
@@ -117,5 +121,15 @@ public class Producto implements Serializable {
 	public void setIngredienteList(List<Ingrediente> ingredienteList) {
 		this.ingredienteList = ingredienteList;
 	}
+
+	public List<Venta> getVentaList() {
+		return ventaList;
+	}
+
+	public void setVentaList(List<Venta> ventaList) {
+		this.ventaList = ventaList;
+	}
+	
+	
 
 }

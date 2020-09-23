@@ -48,7 +48,7 @@ public class Venta implements Serializable {
 	@JoinTable(name = "producto_venta", joinColumns = { @JoinColumn(name = "id_venta", referencedColumnName = "id") },
 	inverseJoinColumns = { @JoinColumn(name = "id_producto", referencedColumnName = "id") })
 	private List<Producto> productoList;
-	
+		
 	public int getId() {
 		return id;
 	}
