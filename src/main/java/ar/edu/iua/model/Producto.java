@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Producto")
+@Table(name = "producto")
 public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 5081791146397214235L;
@@ -47,7 +47,6 @@ public class Producto implements Serializable {
 	@JoinColumn(name = "proveedor_id")
 	private Proveedor proveedor;
 	
-	//Nuevo
 	@ManyToMany(targetEntity = Venta.class,mappedBy = "productoList")
 	private List<Venta> ventaList;
 

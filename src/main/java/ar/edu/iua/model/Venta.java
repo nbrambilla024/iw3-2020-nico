@@ -31,7 +31,7 @@ public class Venta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name ="fecha", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = true)
+	@Column(name = "fecha", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = true)
 	private Date fecha;
 
 	@Column(length = 150, nullable = false)
@@ -43,12 +43,13 @@ public class Venta implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@ManyToMany
-	@JoinTable(name = "producto_venta", joinColumns = { @JoinColumn(name = "id_venta", referencedColumnName = "id") },
-	inverseJoinColumns = { @JoinColumn(name = "id_producto", referencedColumnName = "id") })
+	@JoinTable(name = "producto_venta", joinColumns = {
+			@JoinColumn(name = "id_venta", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "id_producto", referencedColumnName = "id") })
 	private List<Producto> productoList;
-		
+
 	public int getId() {
 		return id;
 	}
@@ -96,9 +97,5 @@ public class Venta implements Serializable {
 	public void setProductoList(List<Producto> productoList) {
 		this.productoList = productoList;
 	}
-
-
-	 
-
 
 }
