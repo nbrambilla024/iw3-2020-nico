@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "ingredientes")
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Ingrediente implements Serializable {
 
 	/**
@@ -36,7 +36,6 @@ public class Ingrediente implements Serializable {
 	private String descripcion;
 
 	@ManyToMany(mappedBy = "ingredienteList")
-	@JsonBackReference
 	private List<Producto> productoList;
 
 	public int getId() {

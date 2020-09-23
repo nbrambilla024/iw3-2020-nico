@@ -109,5 +109,13 @@ public class Producto implements Serializable {
 	public void setEnStock(boolean enStock) {
 		this.enStock = enStock;
 	}
+	
+	public List<Ingrediente> getIngredienteList() {
+		return ingredienteList;
+	}
+
+	public void setIngredienteList(List<Ingrediente> ingredienteList) {
+		this.ingredienteList = ingredienteList;
+	}
 
 }
